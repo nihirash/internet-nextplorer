@@ -1,0 +1,22 @@
+    MMU 2 3, 10
+    ORG #4F00
+    incbin "font.nxt", 0, 8 * 1024
+    MODULE Font
+TEXT          EQU 1
+LINK          EQU 2
+DOWNLOAD      EQU 3
+INPUT         EQU 4
+MUSIC         EQU 5
+IMAGE         EQU 6
+
+CURSOR        EQU #0F
+BORDER_TOP    EQU #10
+BORDER_BOTTOM EQU #11
+SCROLL_UP     EQU #1A
+SCROLL_DOWN   EQU #1B
+
+TILE_REFRESH  EQU #12
+TILE_HOME     EQU #16
+TILE_BACK     EQU #1C
+
+    ENDMODULE
