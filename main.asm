@@ -12,35 +12,25 @@ SLOT0_PAGE = 100
     ret
     include "drivers/keyboard.asm"
     include "drivers/tile-driver.asm"
-
+    include "engine/engine.asm"
+    DISPLAY "Zero page pointer: ", $
     ORG #8000
 Start:
     DISPLAY "Loader ", $
     nextreg 7, 3
     nextreg Slot_0_Reg, SLOT0_PAGE
     call TextMode.init
-    di
-    ld b, Dos.FMODE_READ, hl, page : call Dos.fopen
-    push af
-    ld hl, buffer, bc, #ffff - buffer : call Dos.fread
-    pop af
-    call Dos.fclose
-    ei
+    
+    call Fetcher.loadFile
 
     call Render.prepareScreen
     call Render.renderGopherScreen
     ld de, 0 : call TextMode.gotoXY
-.loop
-    call Keyboard.getSinglePress
-    and a : jr z, .loop
-    call TextMode.putC
-    jr .loop
-
-page
-    db "index.gph", 0
+    jp Render.workLoop
+    include "engine/resident-parts.asm"
 
 hostName
-    db "NIHIRASH.NET"
+    db "file"
     ds 48 - ($ - hostName), 32
     db 0
 

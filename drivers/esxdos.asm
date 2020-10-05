@@ -20,6 +20,19 @@ FMODE_CREATE = #0E
     nextreg Slot_1_Reg, #ff  
     ENDM
 
+; HL - filename in ASCIIZ
+loadBuffer:
+    di
+    ld b, Dos.FMODE_READ: call Dos.fopen
+    push af
+    ld hl, buffer, bc, #ffff - buffer : call Dos.fread
+    ld hl, buffer : add hl, bc : xor a : ld (hl), a
+    pop af
+    call Dos.fclose
+    ei
+    xor a : ld (Render.cursor_position), a, (Render.page_offset), a
+    ret
+
 ; Returns: 
 ;  A - current drive
 getDefaultDrive:

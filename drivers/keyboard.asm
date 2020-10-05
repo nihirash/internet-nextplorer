@@ -1,4 +1,8 @@
     MODULE Keyboard
+KEY_UP = 11
+KEY_DOWN = 10
+KEY_BACKSPACE = 12
+
 keyCode db 0 
 
 getSinglePress:
