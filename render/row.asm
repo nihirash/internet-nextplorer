@@ -69,10 +69,4 @@ drawRow:
     call TextMode.putC
     ld a, 32 : call TextMode.putC : ld a, 32 : call TextMode.putC
     pop hl
-.loop
-    ld a, (hl) : cp 09 : ret z
-    push hl
-    call TextMode.putC
-    pop hl
-    inc hl
-    jp .loop
+    jp print70Goph

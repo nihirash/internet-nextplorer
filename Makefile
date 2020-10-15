@@ -1,7 +1,7 @@
 all: cspect/test.nex
 
-pages: *.gph
-	cp *.gph cspect/tb/
+pages: test-pages/*.*
+	cp test-pages/*.* cspect/tb/
 
 cspect/test.nex: pages main.asm engine/*.* drivers/*.* render/*.* utils/*.*
 	sjasmplus --zxnext=cspect main.asm

@@ -1,7 +1,12 @@
     MODULE Fetcher
 ; HL - pointer to gopher page line
 fetch:
+    call History.save
+.skipHistory
     push hl
+    ld a, (hl) : call Render.getIcon
+    ld (MediaProcessor.media_type), a
+    pop hl : push hl
     call UrlEncoder.isFile
     pop hl
     jr c, fetchFromFS
@@ -12,7 +17,7 @@ fetch:
     ret
 
 fetchFromNet:
-    break
+;; TODO - Network driver
     ret
 
 ; HL - pointer to gopher page line

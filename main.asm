@@ -13,6 +13,7 @@ SLOT0_PAGE = 100
     include "drivers/keyboard.asm"
     include "drivers/tile-driver.asm"
     include "engine/engine.asm"
+    include "utils/limitedstring.asm"
     DISPLAY "Zero page pointer: ", $
     ORG #8000
 Start:

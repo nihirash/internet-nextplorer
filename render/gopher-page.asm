@@ -8,7 +8,7 @@ renderGopherScreen:
     push bc
     ld a, PER_PAGE : sub b
     
-    ld b, a, e, a, a, (page_offset) : add b : ld b, a : call Render.findLine
+    ld b, a, e, a, a, (page_offset) : add b : ld b, a : call findLine
     ld a, h : or l : jr z, .exit
     ld a, e : call Render.renderRow
 .exit
@@ -27,7 +27,7 @@ hideCursor:
     ret
 
 workLoop:
-    dup 3
+    dup WAIT_FRAMES
     halt 
     edup
     call Keyboard.inkey
@@ -35,17 +35,24 @@ workLoop:
 
     cp 'a' : jr z, cursorDown
     cp Keyboard.KEY_DOWN : jp z, cursorDown
+
     cp 'q' : jr z, cursorUp
     cp Keyboard.KEY_UP : jp z, cursorUp
+
     cp 13 : jr z, navigate
+
+    cp 'b' : jp z, History.back
     jp workLoop
 
 navigate:
     ld a, (page_offset), b, a, a, (cursor_position) : add b : ld b, a : call Render.findLine
-    ld a, (hl) : cp '1' : jp nz, workLoop
-    call Fetcher.fetch
-    call renderGopherScreen
+    ld a, (hl)
+    cp '1' : jp z, .fetch
+    cp '0' : jp z, .fetch
     jp workLoop
+.fetch
+    call Fetcher.fetch
+    jp MediaProcessor.processResource
 
 cursorDown:
     call hideCursor
@@ -71,7 +78,7 @@ pageUp:
     ld a, (page_offset) : sub PER_PAGE : ld (page_offset), a
 .exit
     call renderGopherScreen
-    jr workLoop
+    jp workLoop
 .skip
     xor a : ld (cursor_position), a : call showCursor : jp workLoop
 
