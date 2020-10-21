@@ -12,6 +12,7 @@ renderGopherScreen:
 .exit
     pop bc 
     djnz .loop
+    call checkBorder
     jp showCursor
 
 showCursor:

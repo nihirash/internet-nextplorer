@@ -13,6 +13,7 @@ processText:
 
 processPT:
     call VortexProcessor.play
+    ld hl, History.position : inc (hl)
     jp History.back
 
 processPage:

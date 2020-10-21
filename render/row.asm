@@ -14,7 +14,7 @@ getIcon:
     cp '1' : jr z, .page
     cp '0' : jr z, .text
     cp '7' : jr z, .input
-    ld a, '?'
+    ld a, ' '
     ret 
 .info
     ld a, 32 : ret
