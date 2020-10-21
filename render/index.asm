@@ -6,4 +6,8 @@ WAIT_FRAMES = 3
     include "ui.asm"
     include "gopher-page.asm"
     include "plaintext.asm"
+    
+position:
+cursor_position db 0
+page_offset     db 0
     ENDMODULE

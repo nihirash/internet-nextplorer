@@ -8,7 +8,6 @@ findLine:
     cp 10 : jr z, .nextCheck
     jr .loop
 .nextCheck
-  ;  ld a, (hl) : cp '.' : jr z, .nope
     and a : jr z, .nope
     djnz .loop
     ret

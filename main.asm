@@ -1,8 +1,9 @@
     DEVICE ZXSPECTRUMNEXT
     include "drivers/font.asm"
     include "drivers/next.asm"
-SLOT0_PAGE = 100
-
+SLOT0_PAGE = 15
+SLOT1_PAGE = 16
+;;  0x0000 - 0x2000
     MMU 0 e, SLOT0_PAGE
     ORG #38
     push af, bc, de, hl, ix
@@ -14,7 +15,8 @@ SLOT0_PAGE = 100
     include "drivers/tile-driver.asm"
     include "engine/engine.asm"
     include "utils/limitedstring.asm"
-    DISPLAY "Zero page pointer: ", $
+    include "player/index.asm"
+    
     ORG #8000
 Start:
     DISPLAY "Loader ", $

@@ -35,10 +35,12 @@ getIcon:
 .check
     ld hl, scrExt1 : call CompareBuff.search : and a : jr nz, .image
     ld hl, scrExt2 : call CompareBuff.search : and a : jr nz, .image
-    ld hl, pt3Ext1 : call CompareBuff.search : and a : jr nz, .music 
-    ld hl, pt3Ext2 : call CompareBuff.search : and a : jr nz, .music 
+    ld a, 3 : ld (VTPL.SETUP), a ; 0 bit - looping, 1 bit - pt2 file
     ld hl, pt2Ext1 : call CompareBuff.search : and a : jr nz, .music 
     ld hl, pt2Ext2 : call CompareBuff.search : and a : jr nz, .music 
+    ld a, 1 : ld (VTPL.SETUP), a
+    ld hl, pt3Ext1 : call CompareBuff.search : and a : jr nz, .music 
+    ld hl, pt3Ext2 : call CompareBuff.search : and a : jr nz, .music 
 .checkExit
     pop hl
 .downExit 
@@ -56,11 +58,11 @@ getIcon:
 
 scrExt1 db ".scr", 0
 scrExt2 db ".SCR", 0
+
 pt3Ext1 db ".pt3", 0
 pt3Ext2 db ".PT3", 0
 pt2Ext1 db ".pt2", 0
 pt2Ext2 db ".PT2", 0
-
 
 ; HL - text pointer
 ; A - icon

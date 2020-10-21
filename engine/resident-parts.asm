@@ -5,4 +5,5 @@ nameBuffer db "index.gph", 0
 row db "1Starting page", 09, "index.gph", 09, "file", 09, "70", 13, 10
     ds #ff - ($ - row)
 prev ds #ff
+position dw 0
      ENDMODULE

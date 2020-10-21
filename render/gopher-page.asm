@@ -1,5 +1,3 @@
-cursor_position db 0
-page_offset     db 0
 
 renderGopherScreen:
     call prepareScreen
@@ -49,6 +47,7 @@ navigate:
     ld a, (hl)
     cp '1' : jp z, .fetch
     cp '0' : jp z, .fetch
+    cp '9' : jp z, .fetch
     jp workLoop
 .fetch
     call Fetcher.fetch

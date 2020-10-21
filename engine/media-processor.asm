@@ -3,13 +3,17 @@
 media_type db 2 ; Same as icon
 
 processResource:
-    xor a : ld (Render.page_offset), a, (Render.cursor_position), a
     ld a, (media_type)
-    cp 2 : jr z, processPage
+    cp Font.LINK : jr z, processPage
+    cp Font.MUSIC : jr z, processPT
 ; Fallback to plain text
 processText:
     call Render.renderPlainTextScreen
     jp   Render.plainTextLoop
+
+processPT:
+    call VortexProcessor.play
+    jp History.back
 
 processPage:
     call Render.renderGopherScreen

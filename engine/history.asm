@@ -3,6 +3,7 @@ back:
     ld hl, prev
     call Fetcher.fetch.skipHistory
     ld hl, prev, de, row, bc, #ff : ldir
+    ld hl, (History.position), (Render.position), hl
     jp MediaProcessor.processResource
 
 save:
@@ -11,6 +12,7 @@ save:
     push de
 
     push hl
+    ld hl, (Render.position), (History.position), hl, hl, 0, (Render.position), hl
     ld hl, row, de, prev, bc, #ff : ldir
     pop hl
     ld de, row
