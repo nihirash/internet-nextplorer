@@ -1,8 +1,9 @@
     MODULE TextMode
 SCREEN EQU #4000
+TILE_REG_MODE   EQU %11100011
 
 init:
-    nextreg #68, %10000000 ; Disable ULA screen 
+    nextreg ULA_Control_Reg, %10000000 ; Disable ULA screen 
 
     nextreg #4c, #00 ; Transperency color
     ;0x6B (107) => Tilemap Control
@@ -14,7 +15,7 @@ init:
     ;   bit 2 = Reserved, must be 0
     ;   bit 1 = Activate 512 tile mode (soft reset = 0)
     ;   bit 0 = Force tilemap on top of ULA (soft reset = 0)
-    nextreg #6b, %11100011 ; Tilemap enabled
+    nextreg TileMap_Control_Reg, TILE_REG_MODE ; Tilemap enabled
    
 ;  0x6C (108) => Default Tilemap Attribute
 ; (R/W)
@@ -34,7 +35,7 @@ init:
     ; Tile transp. color
     nextreg #4c, 0
     ;
-    nextreg #43, %00110001
+    nextreg Palette_Mode_Reg, %00110001
     ; Color index
     nextreg #40,0 
     ld hl, pal, b, pal_end - pal ; 16 colours for tiles

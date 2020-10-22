@@ -7,6 +7,12 @@ Slot_5_Reg               EQU #55
 Slot_6_Reg               EQU #56
 Slot_7_Reg               EQU #57
 
+ULA_Control_Reg          EQU #68
+Display_Control_Reg_1    EQU #69
+TileMap_Control_Reg      EQU #6B
+
+Palette_Mode_Reg         EQU #43
+
 Sprite_Register_Port     EQU #243B
 
     MACRO NextRegRead nreg

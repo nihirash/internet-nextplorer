@@ -1,8 +1,7 @@
     DEVICE ZXSPECTRUMNEXT
     include "drivers/font.asm"
     include "drivers/next.asm"
-SLOT0_PAGE = 15
-SLOT1_PAGE = 16
+SLOT0_PAGE = 16
 ;;  0x0000 - 0x2000
     MMU 0 e, SLOT0_PAGE
     ORG #38
@@ -16,6 +15,7 @@ SLOT1_PAGE = 16
     include "engine/engine.asm"
     include "utils/limitedstring.asm"
     include "player/index.asm"
+    include "screen-viewer/index.asm"
     
     ORG #8000
 Start:

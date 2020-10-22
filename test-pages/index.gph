@@ -3,7 +3,7 @@ iVery long row that doesn't fit to speccy's sceen and gopher-page standard. We'l
 1Another page	another.gph	file	70
 0Plain text file	plain.txt	file	70
 i	fake	(NULL)	0
-9My photo(zx spectrum screen)	/me.scr	nihirash.net	70	+
+9My photo(zx spectrum screen)	me.scr	file	70	+
 7Text input	/	nihirash.net	70
 i	fake	(NULL)	0
 iMenu:	fake	(NULL)	0
