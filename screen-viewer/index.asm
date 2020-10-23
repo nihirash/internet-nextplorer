@@ -1,7 +1,6 @@
     MODULE ScreenViewer
 display:
-.wait
-    xor a : in a, (#fe) : cpl : and 31 : jr nz, .wait
+    call Keyboard.waitForKeyUp
 
     NextRegRead Slot_6_Reg : ld (SLOT6), a
     NextRegRead Slot_7_Reg : ld (SLOT7), a

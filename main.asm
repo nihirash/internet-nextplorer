@@ -1,7 +1,11 @@
     DEVICE ZXSPECTRUMNEXT
     include "drivers/font.asm"
     include "drivers/next.asm"
-SLOT0_PAGE = 16
+    
+    ;DEFINE WIFI_DEBUG
+    ;DEFINE EMU
+SLOT0_PAGE = 16 
+SLOT1_PAGE = 17
 ;;  0x0000 - 0x2000
     MMU 0 e, SLOT0_PAGE
     ORG #38
@@ -10,32 +14,36 @@ SLOT0_PAGE = 16
     pop ix, hl, de, bc, af
     ei
     ret
+    include "drivers/utils.asm"
     include "drivers/keyboard.asm"
     include "drivers/tile-driver.asm"
     include "engine/engine.asm"
     include "utils/limitedstring.asm"
     include "player/index.asm"
     include "screen-viewer/index.asm"
+    include "drivers/uart.asm"
+    include "drivers/wifi.asm"
+    DISPLAY "Page 16 memory left: ", #2000 - $
     
+    MMU 1 e, SLOT1_PAGE
+    ORG #2000
+; Currently unused
+
     ORG #8000
 Start:
     DISPLAY "Loader ", $
     nextreg 7, 3
     nextreg Slot_0_Reg, SLOT0_PAGE
-    call TextMode.init
-    
-    call Fetcher.loadFile
+    nextreg Slot_1_Reg, SLOT1_PAGE
 
-    call Render.prepareScreen
-    call Render.renderGopherScreen
-    ld de, 0 : call TextMode.gotoXY
-    jp Render.workLoop
+    call TextMode.init
+    call Wifi.init
+    ld hl, homePage : call Fetcher.fetch : jp MediaProcessor.processResource
+
     include "engine/resident-parts.asm"
 
-hostName
-    db "file"
-    ds 48 - ($ - hostName), 32
-    db 0
+
+homePage db "1 ",9, "index.gph", 9, "file", 9, " ",13,10,0
 
     ds 255
 stack = $ - 1

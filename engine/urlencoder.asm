@@ -51,10 +51,21 @@ extractPath:
     ld a, 9, bc, #ff : cpir 
     ld de, nameBuffer
 .loop
-    ld a, (hl) : cp 9 : jr z, .exit : and a : jr z, .exit
+    ld a, (hl) : cp 9 : ret z : and a : ret z
     ld (de), a : inc hl, de
     jr .loop
-.exit
-    ret
+
+extractHostName:
+    xor a
+    ld hl, hostName, de, hostName + 1, bc, 47, (hl), a : ldir
+
+    ld hl, History.row
+    ld a, 9, bc, #ff : cpir 
+    ld bc, #ff : cpir
+    ld de, hostName
+.loop
+    ld a, (hl) : cp 9 : ret z : and a : ret z : cp 13 : ret z
+    ld (de), a : inc hl, de
+    jr .loop
 
     ENDMODULE

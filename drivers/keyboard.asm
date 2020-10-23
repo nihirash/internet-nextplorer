@@ -5,6 +5,10 @@ KEY_BACKSPACE = 12
 
 keyCode db 0 
 
+waitForKeyUp:
+    xor a : in a, (#fe) : cpl : and 31 : jr nz, waitForKeyUp
+    ret
+
 getSinglePress:
     call inkey
 .loop

@@ -1,5 +1,8 @@
 
+isInputRequest db 0
+
 renderGopherScreen:
+    xor a : ld (isInputRequest), a
     call prepareScreen
     ld b, PER_PAGE
 .loop
@@ -41,18 +44,35 @@ workLoop:
     cp 13 : jr z, navigate
 
     cp 'b' : jp z, History.back
+
+    cp 'n' : jp z, inputHost
+
     jp workLoop
 
 navigate:
     ld a, (page_offset), b, a, a, (cursor_position) : add b : ld b, a : call Render.findLine
     ld a, (hl)
-    cp '1' : jp z, .fetch
-    cp '0' : jp z, .fetch
+    cp '1' : jp z, .page
+    cp '0' : jp z, .page
     cp '9' : jp z, .fetch
+    cp '7' : jp z, .input
     jp workLoop
-.fetch
+.page
     call Fetcher.fetch
-    jp MediaProcessor.processResource
+    jr .f2
+.fetch
+    ld de, (Render.position), (History.position), de
+    call Fetcher.fetch.skipHistory
+.f2
+    jp nc, MediaProcessor.processResource
+    ld hl, loadingErrorMsg : call DialogBox.msgBox
+    jp History.back
+.input
+    push hl
+    call DialogBox.inputBox
+    ld a, 1 : ld (isInputRequest), a
+    pop hl
+    jr .page
 
 cursorDown:
     call hideCursor
@@ -87,4 +107,4 @@ pageDn:
     ld a, (page_offset) : add PER_PAGE : ld (page_offset), a
     jr pageUp.exit
 
-    
+loadingErrorMsg db "Document fetch error! Check your connection or hostname!", 0

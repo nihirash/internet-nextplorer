@@ -17,7 +17,7 @@ FMODE_CREATE = #0E
     nextreg Slot_1_Reg, #ff
     rst #8 : db func
     nextreg Slot_0_Reg, SLOT0_PAGE
-    nextreg Slot_1_Reg, #ff  
+    nextreg Slot_1_Reg, SLOT1_PAGE
     ENDM
 
 ; HL - filename in ASCIIZ
