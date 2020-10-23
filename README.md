@@ -37,7 +37,7 @@ I've tried organize code for eaiser location all parts and wish you won't have i
 
 Before usage you should have already configured wifi chip(via wifi.bas/wifi2.bas located at demos/esp in Next distro). 
 
-Best stablitiy I've got with [this](https://github.com/Threetwosevensixseven/espupdate/tree/master/fw/ESP8266_FULL_V3.3_SPUGS/NONOS_v200_1300) firmware.
+Best stablitiy I've got with [this](https://github.com/Threetwosevensixseven/espupdate/tree/master/fw/ESP8266_FULL_V3.3_SPUGS/NONOS_v200_1300) wifi-chip firmware.
 
 How to install it?
 
@@ -47,7 +47,7 @@ How to install it?
 
  * Just open it via Next's browser. After process compete - reconfigure your chip again(via wifi.bas/wifi2.bas)
 
-This firmware works good with uGophy, Internet NEXTplorer, nxtel, nxftp and other tools. Also with this firmware i've go less data losing.
+This firmware works good with uGophy, Internet NEXTplorer, nxtel, nxftp and other tools. Also with this firmware i've got less data losing.
 
 When you did all this parts(or skipped updating firmware on ESP-chip) - just download latest binary from releases page, extract file to Next's SD card and execute from browser NEX-file.
 
@@ -59,15 +59,15 @@ Still not possible download files. Sorry.
 
 ## Development plan
 
- [ ] Add file downloads using proxy server
- [ ] Add mouse support
- [ ] Automatic change song to next(if it goes as next link on page)
- [ ] Same for screens
- [ ] Support more graphic formats?!
- [ ] Support more music formats?!
+- [ ] Add file downloads using proxy server
+- [ ] Add mouse support
+- [ ] Automatic change song to next(if it goes as next link on page)
+- [ ] Same for screens
+- [ ] Support more graphic formats?!
+- [ ] Support more music formats?!
 
 ## License
 
-I've licensed project by Nihirash's Coffeeware License.
+I've licensed project by [Nihirash's Coffeeware License](LICENSE).
 
 Please respect it - it isn't hard.
