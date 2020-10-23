@@ -33,19 +33,27 @@ workLoop:
     halt 
     edup
     call Keyboard.inkey
-    and a : jr z, workLoop
+    and a : jp z, workLoop
 
-    cp 'a' : jr z, cursorDown
+    cp 'a' : jp z, cursorDown
     cp Keyboard.KEY_DOWN : jp z, cursorDown
 
-    cp 'q' : jr z, cursorUp
+    cp 'q'             : jp z, cursorUp
     cp Keyboard.KEY_UP : jp z, cursorUp
+
+    cp 'o'               : jp z, pageUp
+    cp Keyboard.KEY_LEFT : jp z, pageUp
+
+    cp 'p'                : jp z, pageDn
+    cp Keyboard.KEY_RIGHT : jp z, pageDn
 
     cp 13 : jr z, navigate
 
     cp 'b' : jp z, History.back
 
     cp 'n' : jp z, inputHost
+
+    cp 'h' : jp z, History.home
 
     jp workLoop
 

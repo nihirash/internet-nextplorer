@@ -31,7 +31,6 @@ SLOT1_PAGE = 17
 
     ORG #8000
 Start:
-    DISPLAY "Loader ", $
     nextreg 7, 3
     nextreg Slot_0_Reg, SLOT0_PAGE
     nextreg Slot_1_Reg, SLOT1_PAGE
@@ -43,7 +42,7 @@ Start:
     include "engine/resident-parts.asm"
 
 
-homePage db "1 ",9, "index.gph", 9, "file", 9, " ",13,10,0
+homePage db "1 ",9, "docs/index.gph", 9, "file", 9, " ",13,10,0
 
     ds 255
 stack = $ - 1
@@ -56,7 +55,7 @@ buffer:
     DISPLAY "Page buffer ", $
     ds 32, 0
 
-    SAVENEX OPEN "test.nex", Start, stack, 0 , 2
+    SAVENEX OPEN "browser.nex", Start, stack, 0 , 2
     SAVENEX CORE 3,0,0 : SAVENEX CFG 0
     SAVENEX AUTO : SAVENEX CLOSE
     CSPECTMAP "cspect/test.map"

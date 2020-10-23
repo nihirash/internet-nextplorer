@@ -2,3 +2,4 @@ cspect/
 *.nex
 zxnftp.conf
 zxnftp
+dist/

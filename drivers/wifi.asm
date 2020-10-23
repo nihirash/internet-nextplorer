@@ -9,9 +9,9 @@ init:
     EspCmdOkErr "ATE0"
     jr c, .initError
     EspCmdOkErr "AT+CIPCLOSE" ; Close if there some connection was. Don't care about result
-    EspCmdOkErr "AT+CIPSERVER=0" 
-    EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
-    jr c, .initError
+;    EspCmdOkErr "AT+CIPSERVER=0" 
+;    EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
+;    jr c, .initError
     EspCmdOkErr "AT+CIPMUX=0" ; Single connection mode
     jr c, .initError
     or a

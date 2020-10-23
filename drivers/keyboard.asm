@@ -1,6 +1,8 @@
     MODULE Keyboard
 KEY_UP = 11
 KEY_DOWN = 10
+KEY_LEFT = 8
+KEY_RIGHT = 9
 KEY_BACKSPACE = 12
 
 keyCode db 0 

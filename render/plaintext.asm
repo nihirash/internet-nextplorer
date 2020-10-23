@@ -31,15 +31,18 @@ plainTextLoop:
 
     cp 'b' : jp z, History.back
 
-    jr plainTextLoop
+    cp 'n' : jp z, inputHost
+
+    cp 'h' : jp z, History.home
+    jp plainTextLoop
 
 textDown:
-    ld hl, page_offset : inc (hl)
+    ld a, (page_offset) : add PER_PAGE : ld (page_offset), a 
     call renderPlainTextScreen
-    jr plainTextLoop
+    jp plainTextLoop
 
 textUp:
     ld a, (page_offset) : and a : jr z, plainTextLoop
-    dec a : ld (page_offset), a
+    sub PER_PAGE : ld (page_offset), a
     call renderPlainTextScreen
     jr plainTextLoop

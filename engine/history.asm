@@ -7,6 +7,10 @@ back:
     ld hl, (History.position), (Render.position), hl
     jp MediaProcessor.processResource
 
+home:
+    ld hl, homePage : call Fetcher.fetch
+    jp MediaProcessor.processResource
+
 refresh:
     ld a, (History.input), (Render.isInputRequest), a
     ld hl, row : call Fetcher.fetch.skipHistory
