@@ -33,7 +33,7 @@ And this
 
  * Build entire project and run it with cspect using this keys `-nextrom -tv -mmc=./../ -zxnext browser.nex`
 
-I've tried organize code for eaiser location all parts and wish you won't have issues with it.
+I've tried organize code for eaiser location all parts and wish you won't have issues with it. If there are some issues with it - feel free write me about it.
 
 ## Usage
 
@@ -67,6 +67,14 @@ Still not possible download files. Sorry.
 - [ ] Same for screens
 - [ ] Support more graphic formats?!
 - [ ] Support more music formats?!
+
+## Sponsorship
+
+Github sponsorship isn't available for Russia.
+
+You can support my work via PayPal(attached email written in [LICENSE file](LICENSE)).
+
+Thank you.
 
 ## License
 
