@@ -2,6 +2,8 @@
 
 Gopher browser for ZX Spectrum Next and compatible computers.
 
+![Example of work](readme/demo.gif)
+
 ## Development
 
 To compile project all you need is [sjasmplus](https://github.com/z00m128/sjasmplus).
