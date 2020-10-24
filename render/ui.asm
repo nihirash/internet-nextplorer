@@ -55,10 +55,7 @@ inputNavigate:
     ld a, '0' : ld (de), a : inc de
     ld a, 13 : ld (de), a : inc de
     ld a, 10 : ld (de), a : inc de
-    ld hl, navRow : call Fetcher.fetch
-    jp nc, MediaProcessor.processResource
-    ld hl, loadingErrorMsg : call DialogBox.msgBox
-    jp History.back
+    ld hl, navRow : call History.navigate
 
 navRow db "1 ", 9, "/", 9
 domain ds 64

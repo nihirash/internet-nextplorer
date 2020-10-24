@@ -1,11 +1,7 @@
     MODULE MediaProcessor
-
-media_type db 2 ; Same as icon
-
 processResource:
     call UrlEncoder.extractHostName
-
-    ld a, (media_type)
+    ld a, (historyBlock.mediaType)
     cp Font.LINK  : jr z, processPage
     cp Font.INPUT : jr z, processPage
     cp Font.MUSIC : jr z, processPT
@@ -17,7 +13,7 @@ processText:
 
 processPT:
     call VortexProcessor.play
-    jp History.refresh
+    jp History.back
 
 processPage:
     call Render.renderGopherScreen
@@ -25,6 +21,6 @@ processPage:
 
 processImage:
     call ScreenViewer.display
-    jp History.refresh
+    jp History.back
 
     ENDMODULE

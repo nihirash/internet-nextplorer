@@ -26,11 +26,10 @@ loadBuffer:
     ld b, Dos.FMODE_READ: call Dos.fopen
     push af
     ld hl, buffer, bc, #ffff - buffer : call Dos.fread
-    ld hl, buffer : add hl, bc : xor a : ld (hl), a
+    ld hl, buffer : add hl, bc : xor a : ld (hl), a : inc hl : ld (hl), a
     pop af
     call Dos.fclose
     ei
-    xor a : ld (Render.cursor_position), a, (Render.page_offset), a
     ret
 
 ; Returns: 

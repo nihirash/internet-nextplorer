@@ -10,7 +10,7 @@ To compile project all you need is [sjasmplus](https://github.com/z00m128/sjasmp
 
 You may use or not use GNU Make. But for just build enought only sjasmplus: `sjasmplus --zxnext=cspect main.asm`
 
-If you want run it in emulator - use CSpect with configured REAL ESP-module! Buildin ESP-emulator doesn't support all necessary commands. But if you want run it in CSpect with buildin emulator there is some hack:
+If you want run it in emulator - use CSpect with configured REAL ESP-module! Buildin ESP-emulator doesn't support all necessary commands. But if you want run it in CSpect with buildin emulator there is some hack(but it will work very bad):
 
  * Found in `drivers` directory file `wifi.asm`.
  
@@ -34,6 +34,8 @@ And this
  * Build entire project and run it with cspect using this keys `-nextrom -tv -mmc=./../ -zxnext browser.nex`
 
 I've tried organize code for eaiser location all parts and wish you won't have issues with it. If there are some issues with it - feel free write me about it.
+
+To bundle browser include `browser.nex` file and `docs/` directory in single package(should be placed in same directory).
 
 ## Usage
 
@@ -60,7 +62,9 @@ Sometimes it's crashes. I didn't found reason - if you find it - please let me k
 Still not possible download files. Sorry.
 
 ## Development plan
-
+- [X] Publish first version and get first happy users
+- [X] Fix history bugs
+- [X] Make history multilevel
 - [ ] Add file downloads using proxy server
 - [ ] Add mouse support
 - [ ] Automatic change song to next(if it goes as next link on page)

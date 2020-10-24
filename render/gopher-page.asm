@@ -1,8 +1,4 @@
-
-isInputRequest db 0
-
 renderGopherScreen:
-    xor a : ld (isInputRequest), a
     call prepareScreen
     ld b, PER_PAGE
 .loop
@@ -60,27 +56,19 @@ workLoop:
 navigate:
     ld a, (page_offset), b, a, a, (cursor_position) : add b : ld b, a : call Render.findLine
     ld a, (hl)
-    cp '1' : jp z, .page
-    cp '0' : jp z, .page
-    cp '9' : jp z, .fetch
+    cp '1' : jp z, .load
+    cp '0' : jp z, .load
+    cp '9' : jp z, .load
     cp '7' : jp z, .input
     jp workLoop
-.page
-    call Fetcher.fetch
-    jr .f2
-.fetch
-    ld de, (Render.position), (History.position), de
-    call Fetcher.fetch.skipHistory
-.f2
-    jp nc, MediaProcessor.processResource
-    ld hl, loadingErrorMsg : call DialogBox.msgBox
-    jp History.back
+.load
+    jp History.navigate
 .input
     push hl
     call DialogBox.inputBox
-    ld a, 1 : ld (isInputRequest), a
     pop hl
-    jr .page
+    ld a, (DialogBox.inputBuffer) : and a : jp z, workLoop
+    jr .load
 
 cursorDown:
     call hideCursor
@@ -108,11 +96,9 @@ pageUp:
     call renderGopherScreen
     jp workLoop
 .skip
-    xor a : ld (cursor_position), a : call showCursor : jp workLoop
+    xor a : ld (cursor_position), a : call renderGopherScreen : jp workLoop
 
 pageDn:
     xor a : ld (cursor_position), a 
     ld a, (page_offset) : add PER_PAGE : ld (page_offset), a
     jr pageUp.exit
-
-loadingErrorMsg db "Document fetch error! Check your connection or hostname!", 0

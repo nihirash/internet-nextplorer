@@ -1,5 +1,4 @@
     MODULE Wifi
-inited  db  0
 bytes_avail dw 0
 buffer_pointer dw 0
 closed db 1
@@ -8,11 +7,12 @@ init:
     call Uart.init
     EspCmdOkErr "ATE0"
     jr c, .initError
-    EspCmdOkErr "AT+CIPCLOSE" ; Close if there some connection was. Don't care about result
     EspCmdOkErr "AT+CIPSERVER=0" 
-    EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
-    jr c, .initError
+    EspCmdOkErr "AT+CIPCLOSE" ; Close if there some connection was. Don't care about result
     EspCmdOkErr "AT+CIPMUX=0" ; Single connection mode
+    jr c, .initError
+    
+    EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
     jr c, .initError
     or a
     ret

@@ -7,9 +7,9 @@ WAIT_FRAMES = 3
     include "gopher-page.asm"
     include "plaintext.asm"
 
-position:
-cursor_position db 0
-page_offset     db 0
+position EQU historyBlock.position
+cursor_position EQU position + 1
+page_offset     EQU position
     ENDMODULE
 
     include "dialogbox.asm"
