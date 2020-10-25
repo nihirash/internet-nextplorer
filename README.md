@@ -57,9 +57,11 @@ When you did all this parts(or skipped updating firmware on ESP-chip) - just dow
 
 ## Known issues
 
-Sometimes it's crashes. I didn't found reason - if you find it - please let me know. 
-
 Still not possible download files. Sorry.
+
+Some ESP's firmwares sends data too fast - so we got data losing(for example, you can got image without attributes). 
+
+I have some ideas how to fix them both in single fix.
 
 ## Development plan
 - [X] Publish first version and get first happy users
