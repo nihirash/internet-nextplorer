@@ -67,7 +67,7 @@ I have some ideas how to fix them both in single fix.
 - [X] Publish first version and get first happy users
 - [X] Fix history bugs
 - [X] Make history multilevel
-- [ ] Add file downloads using proxy server
+- [X] Add file downloads using proxy server
 - [ ] Add mouse support
 - [ ] Automatic change song to next(if it goes as next link on page)
 - [ ] Same for screens
