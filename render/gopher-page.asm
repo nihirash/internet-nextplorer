@@ -62,6 +62,9 @@ navigate:
     cp '7' : jp z, .input
     jp workLoop
 .load
+    push hl
+    call getIcon 
+    pop hl
     jp History.navigate
 .input
     push hl

@@ -2,9 +2,9 @@
     include "drivers/font.asm"
     include "drivers/next.asm"
     
-    ;DEFINE WIFI_DEBUG
-    ;DEFINE EMU
-
+;    DEFINE WIFI_DEBUG
+;    DEFINE EMU
+    DEFINE PROXY
 SLOT0_PAGE = 16 
 SLOT1_PAGE = 17
 ;;  0x0000 - 0x2000
@@ -25,6 +25,7 @@ SLOT1_PAGE = 17
    include "screen-viewer/index.asm"
    include "drivers/uart.asm"
    include "drivers/wifi.asm"
+   include "drivers/proxy.asm"
     ; Render
     include "render/index.asm"
     ; History data placed here

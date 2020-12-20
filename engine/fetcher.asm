@@ -1,7 +1,34 @@
     MODULE Fetcher
 
-; HL - pointer to gopher page line
 fetchFromNet:
+    call sendGopherRequest
+    ld hl, buffer, (Wifi.buffer_pointer), hl
+.loadPackets
+    call Wifi.getPacket
+    ld a, (Wifi.closed) : and a : jr nz, .closedCallback
+    IFDEF PROXY
+    call Wifi.continue
+    ENDIF
+    jr .loadPackets
+.closedCallback
+    jp MediaProcessor.processResource
+
+error:
+    ld hl, .err : call DialogBox.msgBox 
+    jp History.back
+    ret
+.err db "Document fetch error! Check your connection or hostname!", 0
+
+
+fetchFromFS:
+    xor a : ld hl, buffer, de, buffer + 1, bc, #ffff - buffer - 1, (hl), a  : ldir
+    
+    call UrlEncoder.extractPath
+loadFile
+    ld hl, nameBuffer : call Dos.loadBuffer
+    jp MediaProcessor.processResource
+
+sendGopherRequest:
     ld hl, historyBlock.locator, de, requestBuffer
 .copyRequest
     ld a, (hl) 
@@ -14,7 +41,7 @@ fetchFromNet:
 .getDomainAndHost
     ld hl, historyBlock.host, de, historyBlock.port
     call Wifi.openTCP
-    jr c, .error
+    jr c, error
     ld a, (historyBlock.mediaType) : cp Font.INPUT : jr nz, .performRequest
 
     ld a, 0, bc, #ff, hl, requestBuffer : cpir  : dec hl
@@ -27,26 +54,7 @@ fetchFromNet:
 .performRequest
     ld hl, requestBuffer
     call Wifi.tcpSendZ
-    ld hl, buffer, (Wifi.buffer_pointer), hl
-.loadPackets
-    call Wifi.getPacket
-    ld a, (Wifi.closed) : and a : jr nz, .closedCallback
-    jr .loadPackets
-.error
-    ld hl, .err : call DialogBox.msgBox 
-    jp History.back
     ret
-.closedCallback
-    jp MediaProcessor.processResource
-.err db "Document fetch error! Check your connection or hostname!", 0
-
-fetchFromFS:
-    xor a : ld hl, buffer, de, buffer + 1, bc, #ffff - buffer - 1, (hl), a  : ldir
-    
-    call UrlEncoder.extractPath
-loadFile
-    ld hl, nameBuffer : call Dos.loadBuffer
-    jp MediaProcessor.processResource
 
 requestBuffer ds #ff
     ENDMODULE

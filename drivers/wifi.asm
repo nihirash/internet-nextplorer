@@ -5,8 +5,10 @@ closed db 1
 ; Initialize Wifi chip to work
 init:
     call Uart.init
+    IFNDEF EMU
     EspCmdOkErr "ATE0"
     jr c, .initError
+
     EspCmdOkErr "AT+CIPSERVER=0" 
     EspCmdOkErr "AT+CIPCLOSE" ; Close if there some connection was. Don't care about result
     EspCmdOkErr "AT+CIPMUX=0" ; Single connection mode
@@ -14,6 +16,7 @@ init:
     
     EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
     jr c, .initError
+    ENDIF
     or a
     ret
 .initError
@@ -21,7 +24,7 @@ init:
     scf
     ret
 .errMsg db "WiFi chip init failed!",0
-
+    IFNDEF PROXY
 ; HL - host pointer in gopher row
 ; DE - port pointer in gopher row
 openTCP:
@@ -38,7 +41,12 @@ openTCP:
     ld a, 10 : call Uart.write
     xor a : ld (closed), a
     jp checkOkErr
-    
+
+continue:
+    ret
+    ENDIF
+
+
 checkOkErr:
     call Uart.read
     cp 'O' : jr z, .okStart ; OK

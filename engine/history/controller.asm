@@ -67,6 +67,7 @@ navigate:
     ld a, (depth) : cp total : jr nc, 1f
     inc a : ld (depth), a
 1
+    ld a,(historyBlock.mediaType) : cp Font.DOWNLOAD : jp z, Downloader.go
     jp load
 
     ENDMODULE
