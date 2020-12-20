@@ -12,8 +12,6 @@ You may use or not use GNU Make. But for just build enought only sjasmplus: `sja
 
 If you want run it in emulator - use CSpect with configured REAL ESP-module! Buildin ESP-emulator doesn't support all necessary commands. 
 
- * Build entire project and run it with cspect using this keys `-nextrom -tv -mmc=./../ -zxnext browser.nex`
-
 I've tried organize code for eaiser location all parts and wish you won't have issues with it. If there are some issues with it - feel free write me about it.
 
 To bundle browser include `browser.nex` file and `docs/` directory in single package(should be placed in same directory).
