@@ -4,7 +4,7 @@
     
 ;    DEFINE WIFI_DEBUG
 ;    DEFINE EMU
-    DEFINE PROXY
+;    DEFINE PROXY
 SLOT0_PAGE = 16 
 SLOT1_PAGE = 17
 ;;  0x0000 - 0x2000
@@ -45,7 +45,7 @@ Start:
 
     include "engine/resident-parts.asm"
 
-homePage db "1Home page",9, "docs/index.gph", 9, "file", 9, "70",13,10,0
+homePage db "1Home page",9, "data/index.gph", 9, "file", 9, "70",13,10,0
 
     ds 255
 stack = $ - 1

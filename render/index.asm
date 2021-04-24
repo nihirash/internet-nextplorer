@@ -7,7 +7,7 @@ WAIT_FRAMES = 3
     include "gopher-page.asm"
     include "plaintext.asm"
 
-position EQU historyBlock.position
+position        EQU historyBlock.position
 cursor_position EQU position + 1
 page_offset     EQU position
     ENDMODULE

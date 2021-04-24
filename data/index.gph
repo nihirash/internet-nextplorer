@@ -1,6 +1,7 @@
 iInternet NEXTplorer is dedicated Spectrum Next gopher browser	-	-	-
 i 	-	-	-
-iIt's still experimental software. Use on yourown risk :-)	-	-	-
+iThis software made by Alexander Sharihin and uses my own	-	-	-
+iinfrastructure	-	-	-
 i 	-	-	-
 iMain controls:	-	-	-
 i Arrow UP    or Q - cursor up  	-	-	-
@@ -17,8 +18,8 @@ i anihirash@gmail.com	-	-	-
 iI'll guaranty that browser will be always free for all users and your	-	-	-
 idonations only one way to cover my work	-	-	-
 i	-	-	-
-9You can open spectrum's screen images	docs/example.scr	file	-
-9And listen some PT2/PT3 tracks	docs/example.pt3	file	-
+9You can open spectrum's screen images	data/example.scr	file	-
+9And listen some PT2/PT3 tracks	data/example.pt3	file	-
 i 	-	-	-
 iSome links to start exploring gopherspace:	-	-	-
 1Nihirash's gopher hole with lot of speccy stuff	/	nihirash.net	70

@@ -26,6 +26,7 @@ navigate:
 
     push hl
     ld hl, HistoryEnd - HistoryRecord, de, HistoryEnd, bc,  HistoryRecord * total : lddr
+    xor a : ld hl, historyBlock, de, historyBlock + 1, bc, historyBlockSize - 1, (hl), a : ldir
     pop hl
 
     ; Fill record

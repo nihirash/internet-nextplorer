@@ -6,8 +6,10 @@
 openTCP:
     push de
     push hl
+
+    xor a : ld hl, hostBuff, de, hostBuff + 1, bc, 102, (hl), a : ldir
+
     EspCmdOkErr "AT+CIPCLOSE"
-    //EspCmdOkErr 'AT+CIPSTART="TCP","192.168.0.208",6912' // Replace here for yourown proxy. If you wish
     EspCmdOkErr 'AT+CIPSTART="TCP","138.68.76.243",6912' // Replace here for yourown proxy. If you wish
     jr c, .error
     pop hl : ld de, hostBuff
@@ -38,6 +40,6 @@ continue:
     jp checkOkErr
 
 hostBuff ds 96
-portBuff ds 6
+portBuff ds 7
     ENDMODULE
     ENDIF
