@@ -56,5 +56,5 @@ sendGopherRequest:
     call Wifi.tcpSendZ
     ret
 
-requestBuffer ds #ff
+requestBuffer ds #1ff
     ENDMODULE
