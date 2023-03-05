@@ -19,7 +19,7 @@ plainTextLoop:
     dup WAIT_FRAMES
     halt 
     edup
-    call Keyboard.inkey
+    call Input.read
     and a : jr z, plainTextLoop
     
     ; Down

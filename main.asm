@@ -18,6 +18,8 @@ SLOT1_PAGE = 17
 
    include "drivers/utils.asm"
    include "drivers/keyboard.asm"
+   include "drivers/joystick.asm"
+   include "drivers/input.asm"
    include "drivers/tile-driver.asm"
    include "engine/engine.asm"
    include "utils/limitedstring.asm"

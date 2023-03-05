@@ -3,7 +3,7 @@
 msgBox:
     push hl
     call drawBox
-    call Keyboard.waitForKeyUp
+    call Input.waitForButtonUp
     pop hl
     call TextMode.printZ
     ld b, 150
