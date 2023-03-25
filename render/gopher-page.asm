@@ -28,7 +28,7 @@ workLoop:
     dup WAIT_FRAMES
     halt 
     edup
-    call Keyboard.inkey
+    call Input.read
     and a : jp z, workLoop
 
     cp 'a' : jp z, cursorDown

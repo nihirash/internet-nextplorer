@@ -1,6 +1,6 @@
     MODULE ScreenViewer
 display:
-    call Keyboard.waitForKeyUp
+    call Input.waitForButtonUp
 
     NextRegRead Slot_6_Reg : ld (SLOT6), a
     NextRegRead Slot_7_Reg : ld (SLOT7), a
@@ -10,7 +10,8 @@ display:
     ld hl, buffer, de, #c000, bc, 6912 : ldir
     call forceZXMode
 .wait2
-    xor a : in a, (#fe) : cpl : and 31 : jr z, .wait2
+    call Input.read
+    and a : jr z, .wait2
 
     call backToTileMode
     ld a, (SLOT6) : nextreg Slot_6_Reg, a
