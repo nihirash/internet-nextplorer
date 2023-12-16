@@ -49,11 +49,11 @@ Font artifacts on file downloading.
 
 ## Sponsorship
 
-Github sponsorship isn't available for Russia.
+You can support me with two ways now:
 
-You can support my work via PayPal(attached email written in [LICENSE file](LICENSE)).
+ - Using [Ko-Fi service](http://ko-fi.com/nihirash) - easy for you and me way(also there's some dev.log)
 
-Thank you.
+ - Using Etherium crypto: `0x13105803B79CF6541867d137fDbdf942d0bDA863`
 
 ## License
 
